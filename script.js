@@ -34,7 +34,8 @@ function openLetter() {
   }
 
   document.getElementById("pageTitle").classList.add("show");
-
+  document.getElementById("subtitle").classList.add("show");
+  
   const textDiv = document.getElementById("text");
   let index = 0;
 

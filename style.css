@@ -164,6 +164,27 @@ button:hover {
 }
 
 /* ==========================
+   SOTTOTITOLO / FIRMA
+========================== */
+#subtitle {
+  font-size: 1.2em;           /* dimensione elegante */
+  color: #ffe0f0;             /* rosa chiaro */
+  margin-top: 5px;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-shadow: 0 0 8px rgba(255,255,255,0.6);
+  opacity: 0;                 /* parte nascosto, poi puoi farlo comparire con JS */
+  transform: translateY(-10px);
+  transition: all 0.8s ease;
+}
+
+#subtitle.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==========================
    MOBILE
 ========================== */
 @media (max-width: 500px) {
