@@ -3,7 +3,7 @@
 ========================== */
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: radial-gradient(circle at top, #ff9aa2, #ff4f81);
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@ body {
 .container {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(18px);
-  padding: 50px 40px;
+  padding: 40px 30px;
   border-radius: 30px;
   text-align: center;
   max-width: 620px;
@@ -28,6 +28,7 @@ body {
   box-shadow: 0 25px 60px rgba(0,0,0,0.3);
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 
 /* ==========================
@@ -35,13 +36,13 @@ body {
 ========================== */
 #pageTitle {
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   letter-spacing: 2px;
   color: #fff;
   text-shadow:
     0 0 15px rgba(255,255,255,0.7),
     0 0 35px rgba(255,79,129,0.9);
-  opacity: 0;               /* parte nascosto */
+  opacity: 0;             
   transform: translateY(-80px);
 }
 
@@ -61,9 +62,10 @@ body {
    BUSTA / LETTERINA
 ========================== */
 .envelope {
-  font-size: 200px; /* più grande */
+  font-size: 180px; /* più proporzionata */
   cursor: pointer;
   transition: transform 0.4s;
+  display: inline-block;
 }
 
 .envelope:hover {
@@ -74,14 +76,14 @@ body {
    HINT "Aprimi"
 ========================== */
 .hint {
-  font-size: 2.5em;
+  font-size: 2.2em;
   font-weight: bold;
   opacity: 0.95;
   font-style: italic;
   color: #fff0f5;
   animation: pulse 2.5s infinite;
   transition: opacity 0.5s ease;
-  margin-top: -20px;
+  margin-top: -15px;
 }
 
 @keyframes pulse {
@@ -95,11 +97,11 @@ body {
 ========================== */
 #text {
   margin-top: 20px;
-  font-size: 1.7em;
-  min-height: 180px;
+  font-size: 1.6em;
+  min-height: 160px;
   white-space: pre-line;
-  line-height: 1.6;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  line-height: 1.5;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.35);
 }
 
 /* ==========================
@@ -113,10 +115,10 @@ body {
 button {
   background: linear-gradient(135deg, #fff1f3, #ffc1d1);
   border: none;
-  padding: 16px 34px;
+  padding: 14px 30px;
   border-radius: 40px;
   margin: 10px;
-  font-size: 1.15em;
+  font-size: 1.1em;
   cursor: pointer;
   color: #ff4f81;
   font-weight: bold;
@@ -147,21 +149,19 @@ button:hover {
 ========================== */
 .cupid {
   position: absolute;
-  top: 10%; /* sopra il titolo */
-  left: -10%; /* parte fuori schermo a sinistra */
-  font-size: 3em; /* dimensione emoji/freccia */
+  top: 10%; 
+  left: -15%; 
+  font-size: 3em; 
   z-index: 20;
   transform: rotate(-15deg);
   animation: flyCupid 2s ease-in-out forwards;
 }
 
 @keyframes flyCupid {
-  0% { left: -10%; top: 10%; transform: rotate(-15deg); opacity: 1; }
+  0% { left: -15%; top: 10%; transform: rotate(-15deg); opacity: 1; }
   50% { left: 50%; top: 5%; transform: rotate(0deg); opacity: 1; }
   100% { left: 110%; top: 10%; transform: rotate(15deg); opacity: 0; }
 }
-
-
 
 /* ==========================
    MOBILE
@@ -173,7 +173,7 @@ button:hover {
   }
 
   .container {
-    padding: 35px 25px;
+    padding: 30px 20px;
   }
 
   .envelope {
@@ -182,15 +182,16 @@ button:hover {
 
   #text {
     font-size: 1.25em;
-    min-height: 140px;
+    min-height: 130px;
   }
 
   .hint {
-    font-size: 2em;
+    font-size: 1.8em;
+    margin-top: -10px;
   }
 
   button {
-    padding: 14px 28px;
-    font-size: 1.05em;
+    padding: 12px 25px;
+    font-size: 1em;
   }
 }
