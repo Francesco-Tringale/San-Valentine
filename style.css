@@ -1,0 +1,368 @@
+/* ==========================
+   STILE BASE
+========================== */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ff9aa2, #ff4f81);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+}
+
+/* ==========================
+   CONTAINER
+========================== */
+.container {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(18px);
+  padding: 40px 30px;
+  border-radius: 30px;
+  text-align: center;
+  max-width: 620px;
+  width: 90%;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* ==========================
+   TITOLO DENTRO IL CONTAINER
+========================== */
+#pageTitle {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow:
+    0 0 15px rgba(255,255,255,0.7),
+    0 0 35px rgba(255,79,129,0.9);
+  opacity: 0;             
+  transform: translateY(-80px);
+}
+
+#pageTitle.show {
+  animation: bounceDown 1.2s ease-out forwards;
+}
+
+@keyframes bounceDown {
+  0% { transform: translateY(-80px); opacity: 0; }
+  60% { transform: translateY(15px); opacity: 1; }
+  75% { transform: translateY(-5px); opacity: 1; }
+  90% { transform: translateY(10px); opacity: 1;}
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================
+   BUSTA / LETTERINA
+========================== */
+.envelope {
+  font-size: 180px; /* più proporzionata */
+  cursor: pointer;
+  transition: transform 0.4s;
+  display: inline-block;
+}
+
+.envelope:hover {
+  transform: scale(1.15) rotate(-3deg);
+}
+
+/* ==========================
+   HINT "Aprimi"
+========================== */
+.hint {
+  font-size: 2.2em;
+  font-weight: bold;
+  opacity: 0.95;
+  font-style: italic;
+  color: #fff0f5;
+  animation: pulse 2.5s infinite;
+  transition: opacity 0.5s ease;
+  margin-top: -15px;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* ==========================
+   TESTO LETTERA
+========================== */
+#text {
+  margin-top: 20px;
+  font-size: 1.6em;
+  min-height: 160px;
+  white-space: pre-line;
+  line-height: 1.5;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.35);
+}
+
+/* ==========================
+   PULSANTI
+========================== */
+.buttons {
+  margin-top: 25px;
+  display: none;
+}
+
+button {
+  background: linear-gradient(135deg, #fff1f3, #ffc1d1);
+  border: none;
+  padding: 14px 30px;
+  border-radius: 40px;
+  margin: 10px;
+  font-size: 1.1em;
+  cursor: pointer;
+  color: #ff4f81;
+  font-weight: bold;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+
+button:hover {
+  transform: scale(1.15) translateY(-2px);
+}
+
+/* ==========================
+   CUORI SFONDO ROMANTICI
+========================== */
+
+.heart {
+  position: fixed;        /* IMPORTANTISSIMO */
+  bottom: -20px;
+  font-size: 20px;
+  pointer-events: none;
+  z-index: 0;             /* dietro al container */
+  animation: floatUp linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.4);
+    opacity: 0;
+  }
+}
+
+
+/* ==========================
+   CUPIDO / FRECCIA
+========================== */
+.cupid {
+  position: absolute;
+  top: 10%; 
+  left: -15%; 
+  font-size: 3em; 
+  z-index: 20;
+  transform: rotate(-15deg);
+  animation: flyCupid 2s ease-in-out forwards;
+}
+
+@keyframes flyCupid {
+  0% { left: -15%; top: 10%; transform: rotate(-15deg); opacity: 1; }
+  50% { left: 50%; top: 5%; transform: rotate(0deg); opacity: 1; }
+  100% { left: 110%; top: 10%; transform: rotate(15deg); opacity: 0; }
+}
+
+/* ==========================
+   SOTTOTITOLO / FIRMA
+========================== */
+#subtitle {
+  font-size: 1.2em;           /* dimensione elegante */
+  color: #ffe0f0;             /* rosa chiaro */
+  margin-top: 5px;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-shadow: 0 0 8px rgba(255,255,255,0.6);
+  opacity: 0;                 /* parte nascosto, poi puoi farlo comparire con JS */
+  transform: translateY(-10px);
+  transition: all 0.8s ease;
+}
+
+#subtitle.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.opened {
+  background: radial-gradient(circle at top, #ff6f91, #c9184a);
+  transition: background 1s ease;
+}
+
+.text-heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 20px;
+  z-index: 999;
+  opacity: 0;
+  transition: transform 1.2s ease-out, opacity 1.2s ease-out;
+}
+
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none; /* rimane nascosto finché non clicchi la busta */
+  overflow-y: auto; /* scroll verticale se serve */
+  overflow-x: hidden;
+  z-index: 9999;
+  padding: 20px; /* margine interno per PC */
+  box-sizing: border-box;
+}
+
+.image-container {
+  position: relative;
+  margin: 40px auto; /* margine verticale per scroll e centratura */
+  max-width: 90%;
+  max-height: 90vh; /* massima altezza = 90% della finestra */
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+  margin: 0 auto; /* centra immagine orizzontalmente */
+}
+
+
+
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.envelope.attention {
+  animation: shakeEnvelope 0.6s ease-in-out;
+}
+
+/* bagliore busta */
+.envelope.glow {
+  box-shadow: 0 0 25px 10px rgba(255,255,255,0.7);
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+@keyframes shakeEnvelope {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(5deg); }
+  60% { transform: rotate(-5deg); }
+  80% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+
+
+
+/* ==========================
+   MOBILE
+========================== */
+@media (max-width: 500px) {
+
+  body {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    padding: 20px 15px;
+    width: 95%;
+    max-width: 95%;
+    max-height: 90vh; /* container massimo in altezza */
+    overflow-y: auto;  /* scroll interno se il testo è lungo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #pageTitle {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .envelope {
+    font-size: 100px;
+    margin: 15px 0;
+  }
+
+  #text {
+    font-size: 1.1em;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 100%;
+    max-height: 50vh; /* altezza massima del testo */
+    overflow-y: auto; /* scroll solo se serve */
+    margin-bottom: 10px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  button {
+    width: 90%;
+    margin: 5px 0;
+    padding: 12px 0;
+    font-size: 1em;
+  }
+
+  .image-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* centra verticalmente */
+    padding: 10px; /* piccolo padding per non toccare i bordi */
+  }
+
+  .image-container {
+    max-width: 95%;  /* quasi tutta la larghezza dello schermo */
+    max-height: 80vh; /* occupa al massimo 80% dell’altezza della viewport */
+    width: auto;
+    height: auto;
+  }
+
+  .image-container img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+  }
+
+
+}
+
